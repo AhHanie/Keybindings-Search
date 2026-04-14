@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+    <KeybindSearch.LoadingLabel>Loading Keybindings Search Mod ...</KeybindSearch.LoadingLabel>
+    <KeybindSearch.SearchPlaceholder>Search keybindings...</KeybindSearch.SearchPlaceholder>
+    <KeybindSearch.SearchModeAction>Action</KeybindSearch.SearchModeAction>
+    <KeybindSearch.SearchModeKey>Key</KeybindSearch.SearchModeKey>
+    <KeybindSearch.SearchModeCategory>Category</KeybindSearch.SearchModeCategory>
+</LanguageData>
