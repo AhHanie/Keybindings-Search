@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Machine-specific paths (RimWorldDir, HarmonyDll) come from an untracked local.props or -p: arguments. -->
+  <Import Project="local.props" Condition="Exists('local.props')" />
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Keybindings Search</AssemblyName>
+    <RootNamespace>Keybindings_Search</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
+    <OutputPath>..\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugType>embedded</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RimWorldDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityStubs">
+      <HintPath>$(RimWorldDir)\UnityStubs.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(HarmonyDll)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <Target Name="CheckGameReferences" BeforeTargets="ResolveAssemblyReferences;CoreCompile">
+    <Error Condition="'$(RimWorldDir)' == ''" Text="RimWorldDir is not set. Pass -p:RimWorldDir=&lt;RimWorld install folder&gt; or define it in 1.7/source/local.props." />
+    <Error Condition="'$(HarmonyDll)' == ''" Text="HarmonyDll is not set. Pass -p:HarmonyDll=&lt;Harmony 3 0Harmony.dll&gt; or define it in 1.7/source/local.props." />
+    <Error Condition="'$(RimWorldDir)' != '' And !Exists('$(RimWorldDir)\Assembly-CSharp.dll')" Text="Assembly-CSharp.dll not found in RimWorldDir '$(RimWorldDir)'." />
+    <Error Condition="'$(RimWorldDir)' != '' And !Exists('$(RimWorldDir)\UnityStubs.dll')" Text="UnityStubs.dll not found in RimWorldDir '$(RimWorldDir)'." />
+    <Error Condition="'$(HarmonyDll)' != '' And !Exists('$(HarmonyDll)')" Text="Harmony DLL not found at HarmonyDll '$(HarmonyDll)'." />
+  </Target>
+</Project>

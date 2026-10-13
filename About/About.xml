@@ -5,9 +5,10 @@
     <packageId>sk.keybindsearch</packageId>
     <supportedVersions>
         <li>1.6</li>
+        <li>1.7</li>
     </supportedVersions>
     <description>Adds a search bar to the keybindings option window.</description>
-    <modVersion>1.0.0</modVersion>
+    <modVersion>1.1.0</modVersion>
     <url>https://steamcommunity.com/sharedfiles/filedetails/?id=3707045543</url>
     <modDependencies>
         <li>

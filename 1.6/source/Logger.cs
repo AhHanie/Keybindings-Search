@@ -24,13 +24,11 @@ namespace Keybindings_Search
             Log.Warning(Prefix + message);
         }
 
-        [Conditional("DEBUG")]
         public static void Error(string message)
         {
             Log.Error(Prefix + message);
         }
 
-        [Conditional("DEBUG")]
         public static void Exception(Exception exception, string context = null)
         {
             if (exception == null)
